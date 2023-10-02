@@ -15,15 +15,16 @@ public class TestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = resp.getWriter();
+
         ArrayList<Items> items = new ArrayList<>();
 
         for (int i = 0; i < 20; i++) {
             items.add(new Items(i, "Item" + i, i * 10));
         }
 
-        resp.setContentType("text/html;charset=UTF-8");
 
-        PrintWriter out = resp.getWriter();
         out.printf("<html><body>");
         for (Items item : items) {
             out.printf("<span>" + item.toString() + "</span></br>");
